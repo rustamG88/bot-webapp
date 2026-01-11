@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Select Location</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--tg-theme-bg-color, #fff);
+            color: var(--tg-theme-text-color, #000);
+        }
+        #map { 
+            width: 100%; 
+            height: calc(100vh - 120px); 
+        }
+        .header {
+            padding: 15px;
+            text-align: center;
+            background: var(--tg-theme-secondary-bg-color, #f5f5f5);
+        }
+        .header h3 {
+            margin-bottom: 5px;
+            color: var(--tg-theme-text-color, #000);
+        }
+        .header p {
+            font-size: 13px;
+            color: var(--tg-theme-hint-color, #999);
+        }
+        .coords-display {
+            padding: 10px 15px;
+            background: var(--tg-theme-secondary-bg-color, #f5f5f5);
+            text-align: center;
+            font-size: 14px;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .coords-display.selected {
+            background: var(--tg-theme-button-color, #3390ec);
+            color: var(--tg-theme-button-text-color, #fff);
+        }
+        #selected-coords {
+            font-weight: bold;
+        }
+        .leaflet-container {
+            background: #ddd;
+        }
+        .custom-marker {
+            background: #e74c3c;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h3>📍 Select your location</h3>
+        <p>Click on the map to set your position</p>
+    </div>
+    <div id="map"></div>
+    <div class="coords-display" id="coords-display">
+        <span id="selected-coords">Click on the map...</span>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.ready();
+
+        // Hide main button initially
+        tg.MainButton.hide();
+
+        let selectedLat = null;
+        let selectedLon = null;
+        let marker = null;
+
+        // Initialize map (centered on Europe by default)
+        const map = L.map('map').setView([55.0, 37.0], 4);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Try to get user's approximate location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    map.setView([pos.coords.latitude, pos.coords.longitude], 13);
+                },
+                () => {
+                    // Geolocation denied or failed, keep default view
+                },
+                { enableHighAccuracy: false, timeout: 5000 }
+            );
+        }
+
+        // Custom marker icon
+        const markerIcon = L.divIcon({
+            className: 'custom-marker',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+        });
+
+        // Handle map click
+        map.on('click', function(e) {
+            selectedLat = e.latlng.lat;
+            selectedLon = e.latlng.lng;
+
+            // Update or create marker
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng, { icon: markerIcon }).addTo(map);
+            }
+
+            // Update display
+            const coordsDisplay = document.getElementById('coords-display');
+            const selectedCoordsEl = document.getElementById('selected-coords');
+            
+            coordsDisplay.classList.add('selected');
+            selectedCoordsEl.textContent = `${selectedLat.toFixed(6)}, ${selectedLon.toFixed(6)}`;
+
+            // Show and configure main button
+            tg.MainButton.setText('✓ Save this location');
+            tg.MainButton.show();
+        });
+
+        // Handle main button click
+        tg.MainButton.onClick(function() {
+            if (selectedLat !== null && selectedLon !== null) {
+                // Send data back to bot
+                const data = JSON.stringify({
+                    lat: selectedLat,
+                    lon: selectedLon
+                });
+                tg.sendData(data);
+            }
+        });
+
+        // Handle back button
+        tg.BackButton.show();
+        tg.BackButton.onClick(function() {
+            tg.close();
+        });
+    </script>
+</body>
+</html>
